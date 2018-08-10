@@ -8,13 +8,14 @@ import (
 
 func main() {
 	// fmt.Print("I am happy!")
-	defer printStack()
-	f(18)
+	// defer printStack()
+	// f(18)
 	x := 1
 	p := &x
 	fmt.Println(*p)
 	*p = 2
 	fmt.Println(x)
+
 }
 
 func f(x int) {
@@ -27,4 +28,21 @@ func printStack() {
 	var buf [4096]byte
 	n := runtime.Stack(buf[:], false)
 	os.Stdout.Write(buf[:n])
+}
+
+// 欧几里得算法
+func gcd(x, y int) int {
+	for y != 0 {
+		x, y = y, x%y
+	}
+	return x
+}
+
+// 斐波那契数列(Fibonacci)第N个数
+func fib(n int) int {
+	x, y := 0, 1
+	for i := 0; i < n; i++ {
+		x, y = y, x+y
+	}
+	return x
 }
